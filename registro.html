@@ -1,0 +1,33 @@
+<!-- registro.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de Usuario</title>
+    <script>
+        function validarArchivo() {
+            var archivoInput = document.getElementById('archivo');
+            var archivo = archivoInput.files[0];
+
+            if (archivo) {
+                var extension = archivo.name.split('.').pop().toLowerCase();
+                if (extension !== 'jpg' && extension !== 'pdf') {
+                    alert('Por favor, selecciona un archivo JPG o PDF.');
+                    return false;
+                }
+            }
+
+            return true;
+        }
+    </script>
+</head>
+<body>
+<h2>Registro de Usuario</h2>
+<form action="procesar_registro.php" method="post" enctype="multipart/form-data" onsubmit="return validarArchivo()">
+    Correo: <input type="email" name="correo" required><br>
+    Contraseña: <input type="password" name="contrasena" required><br>
+    Imagen (jpg o pdf): <input type="file" name="imagen" accept=".jpg, .pdf" id="archivo" required><br>
+    <input type="submit" value="Registrarse">
+</form>
+</body>
+</html>
